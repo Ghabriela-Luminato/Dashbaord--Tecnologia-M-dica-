@@ -1,4 +1,4 @@
-# Dashboard de  Acesso a Saúde e a Tecnologia Mundial 🩸🖥️
+# Dashboard Tecnologia Médica 🩸🖥️
 Este repositório contém um dashboard com dados  da infraestrutura tecnológicas e médicas de alguns países  , permitindo que os usuários compreendam rapidamente o estado atual e as tendências da saúde e da utilização de tecnologia , além de identificar áreas que necessitam de melhorias ou investimentos adicionais. Requerido pelo Desafio Python do Projeto Desenvolve- (https://projetodesenvolve.com.br/) 
 
 # Ferramentas Usadas :
