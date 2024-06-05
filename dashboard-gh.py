@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px 
+import plotly.graph_objs as go
 
-
-# Configuração da pg
+# Configuração da página
 st.set_page_config(
     page_title="Tecnologia Médica Dashboard",
     page_icon="📊",
@@ -10,18 +11,20 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# sidebar
+# Sidebar
 with st.sidebar:
     st.title('⚕️Índice de Tecnologia Médica por País')
     selected_year = st.selectbox("Selecione o ano:", [2019, 2020, 2021, 2022, 2023])
-    metric = st.selectbox ("Selecione o Métrico:", ['Acesso a Tecnologia', 'Infraestrutura Médica', 'Resultados de Saúde'])
+    metric = st.selectbox("Selecione o Métrico:", ['Acesso a Tecnologia', 'Infraestrutura Médica', 'Resultados de Saúde'])
     st.markdown("Autora: Ghabriela de Oliveira Santos Luminato") 
     st.markdown("#PDITA 472") 
- 
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-    
+# Apply custom CSS styles
+try:
+    with open("style.css") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+except FileNotFoundError:
+    st.warning("Arquivo 'style.css' não encontrado. Certifique-se de que ele está no diretório correto.")
 
 # Dados
 data = {
@@ -52,13 +55,9 @@ data = {
         'Resultados de Saúde': [89, 88, 90, 84, 79, 74, 69, 64, 59, 54]
     },
 }
-# Converter as chaves para inteiros
-data = {int(key) if isinstance(key, str) and key.isdigit() else key: value for key, value in data.items()}
 
 # Converter os dados em DataFrame
 records = []
-
-
 for year, metrics in data.items():
     if year != 'País':
         for i, country in enumerate(data['País']):
@@ -73,40 +72,34 @@ for year, metrics in data.items():
 
 df = pd.DataFrame(records)
 
-
 # Filtrar o DataFrame pelo ano selecionado
 df_selected_year = df[df['Ano'] == selected_year].drop(columns=['Ano'])
 
+# Layout com três colunas
+col1, col2, col3 = st.columns(3)
 
-
-
-# Layout com duas colunas
-col1, col2 , col3, = st.columns(3)
-
-#TABELA
-with col3: 
-  st.write(df_selected_year, height=100)
-
+# TABELA
+with col3:
+    st.write(df_selected_year, height=100)
 
 # Gráfico de barras para comparar as métricas entre os países selecionados
 fig_bar = px.bar(df_selected_year, x='País', y=metric, color='País', title=f'{metric} Países (Ano {selected_year})')
-fig_bar.update_layout(width=800, height=400,)
+fig_bar.update_layout(width=800, height=400)
 with col1:
     st.plotly_chart(fig_bar, use_container_width=True)
-    
+
 # Gráfico de pizza baseado na métrica selecionada
-with col3:
-    fig = px.pie(df, names='País', values=metric, title=f'Evolução de {metric} por País')
-    # Ajustar o tamanho do gráfico
-    fig.update_layout(height=400, width=200,)
-    st.plotly_chart(fig, use_container_width=True)
+fig_pie = px.pie(df_selected_year, names='País', values=metric, title=f'Evolução de {metric} por País')
+fig_pie.update_layout(height=400, width=300)
+with col2:
+    st.plotly_chart(fig_pie, use_container_width=True)
 
 # Gráfico de dispersão para visualizar a relação entre duas métricas
-    metrics_to_compare = ['Infraestrutura Médica', 'Resultados de Saúde',] if metric == 'Acesso a Tecnologia' else ['Acesso a Tecnologia', 'Infraestrutura Médica','Resultados de Saúde']
-    fig_scatter = px.scatter(df_selected_year, x=metrics_to_compare[0], y=metrics_to_compare[1], color='País', title=f'Relação entre {metrics_to_compare[0]} e {metrics_to_compare[1]} (Ano {selected_year})')
-    fig_scatter.update_layout(width=700, height=400,)
-    with col1:
-        st.plotly_chart(fig_scatter, use_container_width=False)
-        
+metrics_to_compare = ['Infraestrutura Médica', 'Resultados de Saúde'] if metric == 'Acesso a Tecnologia' else ['Acesso a Tecnologia', 'Infraestrutura Médica', 'Resultados de Saúde']
+fig_scatter = px.scatter(df_selected_year, x=metrics_to_compare[0], y=metrics_to_compare[1], color='País', title=f'Relação entre {metrics_to_compare[0]} e {metrics_to_compare[1]} (Ano {selected_year})')
+fig_scatter.update_layout(width=700, height=400)
+with col3:
+    st.plotly_chart(fig_scatter, use_container_width=False)
+
          
    
