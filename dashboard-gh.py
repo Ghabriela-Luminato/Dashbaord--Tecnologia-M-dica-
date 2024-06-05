@@ -100,6 +100,3 @@ fig_scatter = px.scatter(df_selected_year, x=metrics_to_compare[0], y=metrics_to
 fig_scatter.update_layout(width=700, height=400)
 with col3:
     st.plotly_chart(fig_scatter, use_container_width=False)
-
-         
-   
