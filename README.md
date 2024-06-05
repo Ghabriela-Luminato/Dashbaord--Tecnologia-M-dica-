@@ -22,4 +22,5 @@ Ghabriela de Oliveira Santos Luminato
 
 E-mail: ghabriela.santosluminato@gmail.com</a>
 
-![Logo Ghabriela - Copia (3) (1)](https://github.com/Ghabriela-Luminato/Dashboard-Indice-de-Acesso-a-Tecnlogia-na-Sa-de-Mundial/assets/153844509/a04f02c3-192d-4268-b4cb-b862e879d0e7)
+![Logo Ghabriela - Copia (3) (1)](https://github.com/Ghabriela-Luminato/Dashbaord-Tecnologia-Medica-/assets/153844509/7a911300-8937-4c88-9a44-ca5a31fd434d)
+
