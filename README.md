@@ -1,5 +1,5 @@
 # Dashboard Tecnologia Médica 🩸🖥️
-Este repositório contém um dashboard com dados  da infraestrutura tecnológicas e médicas de alguns países  , permitindo que os usuários compreendam rapidamente o estado atual e as tendências da saúde e da utilização de tecnologia , além de identificar áreas que necessitam de melhorias ou investimentos adicionais. Requerido pelo Desafio Python do Projeto Desenvolve- (https://projetodesenvolve.com.br/) 
+Este repositório contém um dashboard com dados  da infraestrutura tecnológicas e médicas de alguns países de acordo com pequisas feitas pela OMS , permitindo que os usuários compreendam rapidamente o estado atual e as tendências da saúde e da utilização de tecnologia , além de identificar áreas que necessitam de melhorias ou investimentos adicionais. Requerido pelo Desafio Python do Projeto Desenvolve- (https://projetodesenvolve.com.br/) 
 
 # Ferramentas Usadas :
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" height=110 width=100 /> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/streamlit/streamlit-plain-wordmark.svg" height=100 width=100 /> 
